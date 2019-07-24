@@ -113,8 +113,8 @@ RUN apt-get install -y libmagickwand-dev imagemagick && \
 # Final Touch
 #--------------------------------------------------------------------------
 #
-COPY ./config/laravel.ini /usr/local/etc/php/conf.d
-COPY ./config/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
+COPY ./config/app.ini /usr/local/etc/php/conf.d
+COPY ./config/app.pool.conf /usr/local/etc/php-fpm.d/
 
 # Clean up
 RUN apt-get clean && \
