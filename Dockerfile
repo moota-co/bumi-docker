@@ -7,7 +7,8 @@ RUN docker-php-ext-install pdo \
     && docker-php-ext-install pcntl \
     && docker-php-ext-install sockets \
     && docker-php-ext-install opcache \
-    && docker-php-ext-install tokenizer
+    && docker-php-ext-install tokenizer \
+    && docker-php-ext-install bcmath
 
 RUN apk add --no-cache $PHPIZE_DEPS \
     && pecl install -o -f redis \
@@ -48,6 +49,10 @@ RUN npm install puppeteer@1.12.2
 RUN wget -P /usr/share/tessdata https://github.com/tesseract-ocr/tessdata/raw/master/eng.traineddata
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN apk --no-cache add shadow && \
+    usermod -u 1000 www-data && \
+    groupmod -g 1000 www-data
 
 WORKDIR /var/www
 
