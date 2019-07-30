@@ -23,6 +23,8 @@ RUN apk add --no-cache libmcrypt-dev \
 
 RUN apk add nodejs npm tesseract-ocr imagemagick wget
 
+RUN apk add --no-cache bash
+
 RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk add --no-cache \
@@ -40,3 +42,7 @@ RUN wget -P /usr/share/tessdata https://github.com/tesseract-ocr/tessdata/raw/ma
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www
+
+COPY startup.sh /usr/local/startup.sh
+
+CMD ["/usr/local/startup.sh"]
