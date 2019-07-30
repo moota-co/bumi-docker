@@ -51,6 +51,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /var/www
 
+RUN chown -R www-data:www-data /var/www
+
 COPY startup.sh /usr/local/startup.sh
 
 CMD ["/usr/local/startup.sh"]
